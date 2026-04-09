@@ -1,0 +1,13 @@
+{
+  "name": "library-management-system",
+  "version": "1.0.0",
+  "description": "MERN Stack Library Management System for College",
+  "scripts": {
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
