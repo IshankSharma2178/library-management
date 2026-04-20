@@ -65,4 +65,13 @@ export const categoryService = {
   delete: (id) => api.delete(`/categories/${id}`)
 };
 
+export const chartService = {
+  getMonthly: (params) => api.get('/charts/monthly', { params }),
+  getCategories: () => api.get('/charts/categories'),
+  getStatus: () => api.get('/charts/status'),
+  getDaily: (params) => api.get('/charts/daily', { params }),
+  getRevenue: (params) => api.get('/charts/revenue', { params }),
+  getSummary: () => api.get('/charts/summary')
+};
+
 export default api;

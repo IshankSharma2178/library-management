@@ -26,7 +26,7 @@ exports.addBook = async (req, res) => {
 
 exports.getAllBooks = async (req, res) => {
   try {
-    const { search, category, page = 1, limit = 10 } = req.query;
+    const { search, category, page = 1, limit = 20 } = req.query;
     let query = {};
 
     if (search) {
@@ -36,17 +36,30 @@ exports.getAllBooks = async (req, res) => {
         { isbn: { $regex: search, $options: 'i' } }
       ];
     }
-    if (category) query.category = category;
+    
+    if (category) {
+      const Category = require('../models/Category');
+      const cat = await Category.findOne({ name: category });
+      if (cat) {
+        query.category = cat._id;
+      }
+    }
 
     const books = await Book.find(query)
+      .populate('category', 'name')
       .populate('addedBy', 'name')
       .limit(limit * 1)
       .skip((page - 1) * limit);
 
     const count = await Book.countDocuments(query);
 
+    const booksWithCategory = books.map(book => ({
+      ...book.toObject(),
+      category: book.category?.name || book.category
+    }));
+
     res.json({
-      books,
+      books: booksWithCategory,
       totalPages: Math.ceil(count / limit),
       currentPage: page
     });

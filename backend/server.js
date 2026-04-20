@@ -21,6 +21,7 @@ app.use("/api/books", require("./routes/books"));
 app.use("/api/transactions", require("./routes/transactions"));
 app.use("/api/requests", require("./routes/requests"));
 app.use("/api/categories", require("./routes/categories"));
+app.use("/api/charts", require("./routes/chart"));
 
 app.get("/", (req, res) => {
   res.json({ msg: "Library Management API running" });

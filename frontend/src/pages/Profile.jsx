@@ -119,13 +119,13 @@ const Profile = () => {
 
   return (
     <div className="profile-page">
-      <div className="profile-header">
-        <div className="profile-avatar">
+      <div className="profile-header" style={{ padding: '2rem', display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
+        <div className="profile-avatar" style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, #2563eb, #7c3aed)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: '700', flexShrink: 0 }}>
           {user.name?.charAt(0).toUpperCase()}
         </div>
         <div className="profile-info">
-          <h1 className="profile-name">{userDetails?.name || user.name}</h1>
-          <p className="profile-role">{user.role === 'admin' ? 'Administrator' : 'Student'}</p>
+          <h1 className="profile-name" style={{ fontSize: '1.75rem', fontWeight: '700', marginBottom: '0.25rem' }}>{userDetails?.name || user.name}</h1>
+          <p className="profile-role" style={{ color: 'var(--text-light)', fontSize: '1rem' }}>{user.role === 'admin' ? 'Administrator' : 'Student'}</p>
         </div>
       </div>
 
@@ -144,10 +144,10 @@ const Profile = () => {
               )}
             </div>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {isEditing ? (
               <>
-                <div className="form-group">
+                <div className="form-group" style={{ marginBottom: '1rem' }}>
                   <label className="text-sm text-muted-foreground">Name</label>
                   <input
                     type="text"
@@ -156,7 +156,7 @@ const Profile = () => {
                     className="form-control"
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ marginBottom: '1rem' }}>
                   <label className="text-sm text-muted-foreground">Department</label>
                   <input
                     type="text"
@@ -165,7 +165,7 @@ const Profile = () => {
                     className="form-control"
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ marginBottom: '1rem' }}>
                   <label className="text-sm text-muted-foreground">Phone</label>
                   <input
                     type="text"
@@ -185,16 +185,16 @@ const Profile = () => {
               </>
             ) : (
               <>
-                <div className="info-row">
-                  <Mail size={18} className="text-muted-foreground" />
+                <div className="info-row" style={{ padding: '0.75rem', background: 'var(--background)', borderRadius: '8px' }}>
+                  <Mail size={18} className="text-muted-foreground" style={{ flexShrink: 0 }} />
                   <div>
                     <div className="text-sm text-muted-foreground">Email</div>
                     <div>{userDetails?.email || user.email}</div>
                   </div>
                 </div>
                 {userDetails?.studentId && (
-                  <div className="info-row">
-                    <Book size={18} className="text-muted-foreground" />
+                  <div className="info-row" style={{ padding: '0.75rem', background: 'var(--background)', borderRadius: '8px' }}>
+                    <Book size={18} className="text-muted-foreground" style={{ flexShrink: 0 }} />
                     <div>
                       <div className="text-sm text-muted-foreground">Student ID</div>
                       <div>{userDetails.studentId}</div>
@@ -202,8 +202,8 @@ const Profile = () => {
                   </div>
                 )}
                 {userDetails?.department && (
-                  <div className="info-row">
-                    <Calendar size={18} className="text-muted-foreground" />
+                  <div className="info-row" style={{ padding: '0.75rem', background: 'var(--background)', borderRadius: '8px' }}>
+                    <Calendar size={18} className="text-muted-foreground" style={{ flexShrink: 0 }} />
                     <div>
                       <div className="text-sm text-muted-foreground">Department</div>
                       <div>{userDetails.department}</div>
@@ -211,8 +211,8 @@ const Profile = () => {
                   </div>
                 )}
                 {userDetails?.phone && (
-                  <div className="info-row">
-                    <Phone size={18} className="text-muted-foreground" />
+                  <div className="info-row" style={{ padding: '0.75rem', background: 'var(--background)', borderRadius: '8px' }}>
+                    <Phone size={18} className="text-muted-foreground" style={{ flexShrink: 0 }} />
                     <div>
                       <div className="text-sm text-muted-foreground">Phone</div>
                       <div>{userDetails.phone}</div>
@@ -231,18 +231,18 @@ const Profile = () => {
               Quick Stats
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="stat-row">
-              <span>Currently Borrowed</span>
-              <span className="stat-value">{currentBooks.length}</span>
+          <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div className="stat-row" style={{ padding: '1rem', background: 'var(--background)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontWeight: '500' }}>Currently Borrowed</span>
+              <span className="stat-value" style={{ fontSize: '1.25rem', fontWeight: '700', color: '#2563eb' }}>{currentBooks.length}</span>
             </div>
-            <div className="stat-row">
-              <span>Books Returned</span>
-              <span className="stat-value">{pastBooks.length}</span>
+            <div className="stat-row" style={{ padding: '1rem', background: 'var(--background)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontWeight: '500' }}>Books Returned</span>
+              <span className="stat-value" style={{ fontSize: '1.25rem', fontWeight: '700', color: '#22c55e' }}>{pastBooks.length}</span>
             </div>
-            <div className="stat-row">
-              <span>Pending Requests</span>
-              <span className="stat-value">{pendingRequests.length}</span>
+            <div className="stat-row" style={{ padding: '1rem', background: 'var(--background)', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontWeight: '500' }}>Pending Requests</span>
+              <span className="stat-value" style={{ fontSize: '1.25rem', fontWeight: '700', color: '#f59e0b' }}>{pendingRequests.length}</span>
             </div>
           </CardContent>
         </Card>
